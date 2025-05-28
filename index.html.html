@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنفوجرافيك: عسل شيخ العسل – كنز السدر من جبال اليمن!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /*
+            Custom CSS for theme colors and specific component styling.
+            These colors are derived from the uploaded honey image (`image_dfb334.png`) and the concept of rich Yemeni honey.
+            They aim to create a warm, earthy, and authentic feel.
+
+            --color-primary-gold: A rich, deep golden color, representative of high-quality honey. Used for main headings and accents.
+            --color-secondary-amber: A vibrant, natural amber, used for subheadings and contrasting elements.
+            --color-text-dark: A very dark, almost chocolatey brown, ensuring excellent readability for body text.
+            --color-background-light: A soft, creamy off-white, providing a warm and clean canvas.
+            --color-card-bg: Pure white for card backgrounds, offering a crisp contrast to the background.
+            --color-cta-deep-amber: A strong, deep reddish-amber, for prominent call-to-action buttons.
+            --color-border-tan: A warm, earthy tan for borders, especially on honey type cards.
+        */
+        :root {
+            --color-primary-gold: #BF882C;
+            --color-secondary-amber: #D46A00;
+            --color-text-dark: #3F2D1F;
+            --color-background-light: #FFFDF7;
+            --color-card-bg: #FFFFFF;
+            --color-cta-deep-amber: #B74D00;
+            --color-border-tan: #CC9933;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--color-background-light); /* Sets the main page background */
+            color: var(--color-text-dark); /* Sets the default text color for the body */
+            /* Subtle repeating honeycomb pattern as a background, inspired by the honey theme.
+               This uses CSS gradients to create a simple geometric pattern without relying on image files. */
+            background-image:
+                linear-gradient(45deg, rgba(0,0,0,0.03) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(0,0,0,0.03) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(0,0,0,0.03) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(0,0,0,0.03) 75%);
+            background-size: 20px 20px; /* Controls the size of the honeycomb cells */
+            background-position: 0 0, 10px 0, 10px 10px, 0 10px; /* Positions the patterns */
+        }
+
+        /* Utility classes to easily apply the defined custom colors throughout the HTML */
+        .text-primary-gold { color: var(--color-primary-gold); }
+        .bg-primary-gold { background-color: var(--color-primary-gold); }
+        .text-secondary-amber { color: var(--color-secondary-amber); }
+        .bg-secondary-amber { background-color: var(--color-secondary-amber); }
+        .text-cta-deep-amber { color: var(--color-cta-deep-amber); }
+        .bg-cta-deep-amber { background-color: var(--color-cta-deep-amber); }
+        .text-dark-brown { color: var(--color-text-dark); }
+        .border-tan { border-color: var(--color-border-tan); }
+
+        /* Styling for content cards to provide a Material Design aesthetic (elevation, rounded corners) */
+        .card {
+            background-color: var(--color-card-bg);
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 2rem; /* mb-8 */
+        }
+
+        /* Styling for the main call-to-action button, ensuring it's prominent and interactive */
+        .btn-cta {
+            background-color: var(--color-cta-deep-amber);
+            color: white;
+            font-weight: bold;
+            padding-top: 0.75rem; /* py-3 */
+            padding-bottom: 0.75rem; /* py-3 */
+            padding-left: 1.5rem; /* px-6 */
+            padding-right: 1.5rem; /* px-6 */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+        }
+        .btn-cta:hover {
+            background-color: #A04000; /* Slightly darker shade of the CTA color on hover */
+            transform: scale(1.05); /* Slightly enlarge the button for visual feedback */
+        }
+
+        /* Styling for benefit icons (e.g., checkmarks), using a standard green for positive indicators */
+        .icon-benefit {
+            font-size: 1.5rem; /* text-2xl */
+            color: #22C55E; /* Standard green */
+        }
+
+        /* Specific styling for the WhatsApp button to ensure the icon and text are correctly aligned */
+        .whatsapp-button {
+            display: inline-flex; /* Uses flexbox to align content */
+            align-items: center; /* Vertically centers items within the flex container */
+            justify-content: center; /* Centers content horizontally */
+            text-align: center;
+        }
+
+        /* Responsive styling for the Yemeni mountain motif.
+           This uses a pseudo-element to apply a subtle background image with a custom pattern.
+           The pattern is a simple geometric motif that can evoke Yemeni architecture or patterns.
+           Adjust background-size and opacity as needed. */
+        .yemeni-motif-background {
+            position: relative;
+            overflow: hidden; /* Ensures the pattern doesn't spill out */
+        }
+        .yemeni-motif-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><polygon points="0,0 10,10 0,20 0,0" fill="%23d46a00" opacity="0.05"/></svg>'); /* Base64 encoded SVG for a small triangle pattern */
+            background-size: 20px 20px;
+            opacity: 0.08; /* Very subtle opacity */
+            z-index: 0; /* Ensures it stays behind content */
+        }
+    </style>
+</head>
+<body class="text-dark-brown">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <header class="text-center mb-12 md:mb-16">
+            <img src="image_dfb334.png" alt="شعار شيخ العسل" class="mx-auto w-40 h-40 mb-6 object-contain">
+
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-primary-gold mb-4">✨  شيخ العسل ✨</h1>
+            <p class="text-xl sm:text-2xl text-secondary-amber font-semibold mb-6">كنز السدر من جبال اليمن الأصيل!</p>
+            <p class="text-lg sm:text-xl max-w-2xl mx-auto text-dark-brown">من قلب الطبيعة اليمانية الخالصة، نقدم لكم "شيخ العسل"، خلاصة أجود أنواع عسل السدر النقي، الذي يجمع بين النكهة الأصيلة والفوائد العظيمة المستمدة من تراث اليمن العريق.</p>
+        </header>
+
+        <section id="special" class="mb-12 md:mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center text-secondary-amber mb-8">ما الذي يميز شيخ العسل؟</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <div class="card text-center yemeni-motif-background">
+                    <div class="text-6xl text-primary-gold mb-3">🍯</div>
+                    <h3 class="text-2xl font-semibold mb-2">طبيعي 100٪</h3>
+                    <p class="text-dark-brown">نضمن لكم عسلاً خاماً نقياً، لم تمسه يد الإنسان بإضافات أو معالجات، ليصلكم كما أرادته الطبيعة الأم.</p>
+                </div>
+                <div class="card text-center yemeni-motif-background">
+                    <div class="text-6xl text-primary-gold mb-3">😋</div>
+                    <h3 class="text-2xl font-semibold mb-2">نكهة غنية وفريدة</h3>
+                    <p class="text-dark-brown">يتميز بنكهته العطرية العميقة وقوامه الكثيف الذي يذوب في الفم، تاركاً مذاقاً أصيلاً لا يُنسى.</p>
+                </div>
+                <div class="card text-center yemeni-motif-background">
+                    <div class="text-6xl text-primary-gold mb-3">⛰️</div>
+                    <h3 class="text-2xl font-semibold mb-2">من جبال اليمن المباركة</h3>
+                    <p class="text-dark-brown">يُجمع من أزهار شجرة السدر التي تنمو طبيعياً في وديان وجبال اليمن، أرض العسل الأصيل ومعقل نقاوته.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="mb-12 md:mb-16">
+            <div class="card max-w-3xl mx-auto yemeni-motif-background">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center text-secondary-amber mb-8">فوائد صحية لا تُحصى</h2>
+                <p class="text-center text-lg mb-8 text-dark-brown">عسل السدر "شيخ العسل" ليس مجرد غذاء، بل هو صيدلية طبيعية متكاملة تساهم في تعزيز صحتكم وحيويتكم اليومية، مستفيداً من خصائص السدر العلاجية:</p>
+                <ul class="space-y-6">
+                    <li class="flex items-start">
+                        <span class="icon-benefit ml-3 flex-shrink-0">✅</span>
+                        <div>
+                            <h4 class="font-semibold text-xl text-dark-brown">يقوّي جهاز المناعة</h4>
+                            <p class="text-dark-brown">يساعد على تعزيز دفاعات الجسم الطبيعية ومقاومة الأمراض بفضل مضادات الأكسدة القوية التي يحتويها.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="icon-benefit ml-3 flex-shrink-0">✅</span>
+                        <div>
+                            <h4 class="font-semibold text-xl text-dark-brown">يدعم صحة الجهاز الهضمي</h4>
+                            <p class="text-dark-brown">يساهم في تحسين عملية الهضم وتخفيف الاضطرابات المعوية ويعزز امتصاص العناصر الغذائية بفعالية.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="icon-benefit ml-3 flex-shrink-0">✅</span>
+                        <div>
+                            <h4 class="font-semibold text-xl text-dark-brown">يهدئ الحلق ويخفف السعال</h4>
+                            <p class="text-dark-brown">يعمل كملطف طبيعي للحلق، ويساعد في تخفيف أعراض نزلات البرد والسعال المزعج بطريقة طبيعية.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="icon-benefit ml-3 flex-shrink-0">✅</span>
+                        <div>
+                            <h4 class="font-semibold text-xl text-dark-brown">مصدر غني بالطاقة</h4>
+                            <p class="text-dark-brown">يزود الجسم بالطاقة الطبيعية والسكريات الصحية التي تساعد على النشاط والحيوية طوال اليوم دون هبوط مفاجئ.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="honey-types" class="mb-12 md:mb-16">
+            <div class="card max-w-3xl mx-auto yemeni-motif-background">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center text-secondary-amber mb-8">استكشف: أنواع عسل اليمن الأصيل من شيخ العسل</h2>
+                <p class="text-center text-lg mb-8 text-dark-brown">نقدم لكم تشكيلة واسعة من أجود أنواع العسل اليمني، كل نوع بخصائصه الفريدة ومذاقه المميز، ليناسب جميع الأذواق والاحتياجات، ويعكس التنوع البيئي في اليمن:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-4 border border-tan rounded-lg shadow-sm bg-background-light">
+                        <img src="path/to/royal-sidr.jpg" alt="سدر ملكي" class="mx-auto w-32 h-32 mb-3 object-cover rounded-md" style="display:none;">
+                        <h3 class="font-semibold text-xl text-primary-gold mb-2">🍯 سدر ملكي</h3>
+                        <p class="text-dark-brown">أفخر أنواع عسل السدر، يتميز بجودته الاستثنائية وفوائده العلاجية المركزة، وغالباً ما يكون لونه داكناً وقوامه كثيفاً، يعتبر علامة فارقة في عالم العسل.</p>
+                    </div>
+                    <div class="p-4 border border-tan rounded-lg shadow-sm bg-background-light">
+                        <img src="path/to/sidr-grade1.jpg" alt="سدر درجة أولى" class="mx-auto w-32 h-32 mb-3 object-cover rounded-md" style="display:none;">
+                        <h3 class="font-semibold text-xl text-primary-gold mb-2">🍯 سدر درجة أولى</h3>
+                        <p class="text-dark-brown">عسل سدر نقي ذو جودة عالية، يتميز بنكهته القوية وقيمته الغذائية الممتازة، وهو الخيار الأمثل للمستهلكين المميزين.</p>
+                    </div>
+                    <div class="p-4 border border-tan rounded-lg shadow-sm bg-background-light">
+                        <img src="path/to/sidr-grade2.jpg" alt="سدر درجة ثانية" class="mx-auto w-32 h-32 mb-3 object-cover rounded-md" style="display:none;">
+                        <h3 class="font-semibold text-xl text-primary-gold mb-2">🍯 سدر درجة ثانية</h3>
+                        <p class="text-dark-brown">جودة ممتازة للاستخدام اليومي، مع الحفاظ على خصائص السدر العلاجية المعروفة، ويقدم قيمة ممتازة.</p>
+                    </div>
+                    <div class="p-4 border border-tan rounded-lg shadow-sm bg-background-light">
+                        <img src="path/to/sidr-grade3.jpg" alt="سدر درجة ثالثة" class="mx-auto w-32 h-32 mb-3 object-cover rounded-md" style="display:none;">
+                        <h3 class="font-semibold text-xl text-primary-gold mb-2">🍯 سدر درجة ثالثة</h3>
+                        <p class="text-dark-brown">خيار اقتصادي بجودة جيدة، مناسب للاستهلاك المنتظم ومزج المشروبات، مع الحفاظ على نكهة السدر المميزة.</p>
+                    </div>
+                    <div class="p-4 border border-tan rounded-lg shadow-sm bg-background-light">
+                        <img src="path/to/samar-honey.jpg" alt="سمر درجة أولى وثانية" class="mx-auto w-32 h-32 mb-3 object-cover rounded-md" style="display:none;">
+                        <h3 class="font-semibold text-xl text-secondary-amber mb-2">🌳 سمر درجة أولى وثانية</h3>
+                        <p class="text-dark-brown">عسل السمر بلونه الداكن وطعمه الفريد والقوي، معروف بفوائده للجهاز الهضمي وغني بالمعادن الأساسية.</p>
+                    </div>
+                    <div class="p-4 border border-tan rounded-lg shadow-sm bg-background-light">
+                        <img src="path/to/murabbai-honey.jpg" alt="مربعي" class="mx-auto w-32 h-32 mb-3 object-cover rounded-md" style="display:none;">
+                        <h3 class="font-semibold text-xl text-primary-gold mb-2">🌸 مربعي</h3>
+                        <p class="text-dark-brown">عسل الزهور البرية المتعددة، يتميز بنكهته الغنية والمتنوعة وفوائده الشاملة المستمدة من رحيق زهور مختلفة.</p>
+                    </div>
+                    <div class="p-4 border border-tan rounded-lg shadow-sm bg-background-light">
+                        <img src="path/to/tabiat-sidr.jpg" alt="تابعة سدر" class="mx-auto w-32 h-32 mb-3 object-cover rounded-md" style="display:none;">
+                        <h3 class="font-semibold text-xl text-primary-gold mb-2">🌼 تابعة سدر</h3>
+                        <p class="text-dark-brown">عسل يتميز بوجود نسبة من رحيق السدر ممزوجاً برحيق أزهار أخرى، يجمع بين نكهة السدر وفوائد الأزهار المتنوعة، لتقديم تجربة فريدة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-sidr" class="mb-12 md:mb-16">
+            <div class="card text-center max-w-3xl mx-auto yemeni-motif-background">
+                <h2 class="text-3xl sm:text-4xl font-bold text-secondary-amber mb-6">لماذا عسل السدر اليمني تحديداً؟</h2>
+                <p class="text-lg mb-4 text-dark-brown">يُعتبر عسل السدر اليمني من أجود وأفخر أنواع العسل في العالم، وهو محط تقدير كبير لجودته الاستثنائية. تشتهر شجرة السدر بخصائصها العلاجية الفريدة، وينعكس ذلك على العسل المنتج من رحيق أزهارها النادرة.</p>
+                <p class="text-lg text-dark-brown">إنه كنز طبيعي حقيقي، غني بالمعادن والفيتامينات ومضادات الأكسدة التي تجعله غذاءً ودواءً في آن واحد، وموروثاً ثقافياً وصحياً من قلب اليمن. "شيخ العسل" يجسد هذا الإرث العريق، مقدماً لكم خلاصة فوائد السدر اللامتناهية والنقاوة الأصيلة.</p>
+            </div>
+        </section>
+
+        <section id="promise" class="mb-12 md:mb-16 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-secondary-amber mb-8"> شيخ العسل: الجودة التي تثق بها</h2>
+            <div class="flex justify-center mb-6">
+                <div class="w-40 h-40 sm:w-48 sm:h-48 rounded-full bg-primary-gold flex items-center justify-center text-center shadow-xl border-4 border-secondary-amber transform transition-transform duration-300 hover:scale-110">
+                    <p class="text-white font-bold text-xl sm:text-2xl p-3 leading-tight">الجودة<br/>التي تثق<br/>بها!</p>
+                </div>
+            </div>
+            <p class="text-lg max-w-xl mx-auto text-dark-brown">نلتزم بتقديم أعلى معايير الجودة في كل قطرة من "شيخ العسل". من خلايا النحل في جبال اليمن الشاهقة إلى مائدتكم، نحرص على كل تفصيل لنضمن لكم تجربة استثنائية من النقاء والفوائد.</p>
+        </section>
+
+        <section id="cta" class="text-center py-10 card bg-secondary-amber">
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">اطلب كنز السدر اليوم، وتمتع بالصحة والذوق الرفيع!</h2>
+            <p class="text-xl text-gray-100 mb-8">لا تفوت فرصة الحصول على هذا الكنز الطبيعي الأصيل. أضف "شيخ العسل" إلى نظامك الغذائي اليومي واستمتع بفوائده المذهلة وجودته التي لا تُضاهى.</p>
+            <button class="btn-cta text-lg sm:text-xl mb-6">
+                اطلبه الآن – الجودة التي تثق بها!
+            </button>
+
+            <p class="text-white text-lg font-semibold mb-4">أو تواصل معنا مباشرة عبر الواتساب:</p>
+            <a href="https://wa.me/967777178189?text=أود%20الاستفسار%20عن%20عسل%20شيخ%20العسل" target="_blank" rel="noopener noreferrer" class="whatsapp-button bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 inline-flex items-center">
+                <span class="text-2xl ml-2">📞</span>
+                تواصل عبر الواتساب
+            </a>
+        </section>
+
+        <footer class="text-center pt-8 mt-8 border-t border-primary-gold/[0.3]">
+            <p class="text-sm text-dark-brown">&copy;شيخ العسل.@asheikh77717.</p>
+            <p class="text-xs text-gray-600 mt-1">صُنع بحب وعناية من خيرات اليمن</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
